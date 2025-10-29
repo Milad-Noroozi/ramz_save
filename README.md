@@ -36,12 +36,14 @@
 
 ---
 
-## ⚙️ Folder Structure
+# 📁 Folder Structure
+
+```
 lib/
 │
-├── main.dart
+├── 📄 main.dart
 │
-├── core/
+├── 🎯 core/
 │   ├── constants/
 │   │   ├── app_colors.dart
 │   │   ├── app_icons.dart
@@ -58,7 +60,7 @@ lib/
 │       ├── light_theme.dart
 │       └── app_theme.dart
 │
-├── data/
+├── 💾 data/
 │   ├── models/
 │   │   ├── vault_model.dart
 │   │   ├── user_model.dart
@@ -68,24 +70,24 @@ lib/
 │   │   ├── local/
 │   │   │   └── hive_service.dart
 │   │   └── remote/
-│   │       └── api_service.dart (در صورت نیاز)
+│   │       └── api_service.dart
 │   │
 │   └── repositories/
 │       ├── vault_repository.dart
 │       └── user_repository.dart
 │
-├── domain/
+├── 🏛️ domain/
 │   ├── entities/
 │   │   ├── vault_entity.dart
 │   │   └── user_entity.dart
 │   │
-│   ├── usecases/
-│   │   ├── add_vault_usecase.dart
-│   │   ├── get_all_vaults_usecase.dart
-│   │   └── generate_password_usecase.dart
+│   └── usecases/
+│       ├── add_vault_usecase.dart
+│       ├── get_all_vaults_usecase.dart
+│       └── generate_password_usecase.dart
 │
-├── presentation/
-│   ├── providers/ (اگر از Riverpod یا Provider استفاده می‌کنی)
+├── 🎨 presentation/
+│   ├── providers/
 │   │   ├── vault_provider.dart
 │   │   ├── auth_provider.dart
 │   │   └── theme_provider.dart
@@ -119,14 +121,55 @@ lib/
 │       ├── password_strength_bar.dart
 │       └── vault_item_tile.dart
 │
-└── services/
+└── 🔧 services/
     ├── local_auth_service.dart
     ├── notification_service.dart
     ├── secure_storage_service.dart
     └── biometric_auth.dart
+```
 
+---
 
+## 📋 Layer Descriptions
 
+### 🎯 Core Layer
+Shared and foundational files for the application
+- **constants**: Colors, icons, text styles, routes
+- **utils**: Helper functions like validation and encryption
+- **theme**: Dark/Light theme configuration
+
+### 💾 Data Layer
+Data management and communication with data sources
+- **models**: Data models
+- **datasources**: Data sources (local/remote)
+- **repositories**: Repository implementations
+
+### 🏛️ Domain Layer
+Pure business logic
+- **entities**: Application entities
+- **usecases**: Business use cases
+
+### 🎨 Presentation Layer
+User interface and state management
+- **providers**: State management (Riverpod/Provider)
+- **screens**: Application screens
+- **widgets**: Reusable widgets
+
+### 🔧 Services Layer
+General services
+- Local authentication
+- Notifications
+- Secure storage
+- Biometric authentication
+
+---
+
+## 🏗️ Architecture Pattern
+This structure follows **Clean Architecture** principles:
+- Separation of Data, Domain, and Presentation layers
+- Repository Pattern implementation
+- State management with Provider/Riverpod
+- High testability
 ---
 
 ## 💡 Why This Project?
