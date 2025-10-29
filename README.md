@@ -38,12 +38,93 @@
 
 ## ⚙️ Folder Structure
 lib/
-├── config/ # App colors, styles, routes
-├── models/ # Data models (User, Vault, Password)
-├── controllers/ # Business logic (Auth, Vault, Generator)
-├── views/ # UI screens and widgets
-├── services/ # Secure storage, encryption, biometrics
-└── utils/ # Helpers and validators
+│
+├── main.dart
+│
+├── core/
+│   ├── constants/
+│   │   ├── app_colors.dart
+│   │   ├── app_icons.dart
+│   │   ├── app_text_styles.dart
+│   │   └── app_routes.dart
+│   │
+│   ├── utils/
+│   │   ├── validators.dart
+│   │   ├── encryption_helper.dart
+│   │   └── password_generator.dart
+│   │
+│   └── theme/
+│       ├── dark_theme.dart
+│       ├── light_theme.dart
+│       └── app_theme.dart
+│
+├── data/
+│   ├── models/
+│   │   ├── vault_model.dart
+│   │   ├── user_model.dart
+│   │   └── password_item_model.dart
+│   │
+│   ├── datasources/
+│   │   ├── local/
+│   │   │   └── hive_service.dart
+│   │   └── remote/
+│   │       └── api_service.dart (در صورت نیاز)
+│   │
+│   └── repositories/
+│       ├── vault_repository.dart
+│       └── user_repository.dart
+│
+├── domain/
+│   ├── entities/
+│   │   ├── vault_entity.dart
+│   │   └── user_entity.dart
+│   │
+│   ├── usecases/
+│   │   ├── add_vault_usecase.dart
+│   │   ├── get_all_vaults_usecase.dart
+│   │   └── generate_password_usecase.dart
+│
+├── presentation/
+│   ├── providers/ (اگر از Riverpod یا Provider استفاده می‌کنی)
+│   │   ├── vault_provider.dart
+│   │   ├── auth_provider.dart
+│   │   └── theme_provider.dart
+│   │
+│   ├── screens/
+│   │   ├── auth/
+│   │   │   ├── login_screen.dart
+│   │   │   └── register_screen.dart
+│   │   │
+│   │   ├── home/
+│   │   │   ├── home_screen.dart
+│   │   │   └── widgets/
+│   │   │       ├── vault_card.dart
+│   │   │       ├── progress_indicator.dart
+│   │   │       └── category_tabs.dart
+│   │   │
+│   │   ├── vault/
+│   │   │   ├── add_vault_screen.dart
+│   │   │   ├── vault_detail_screen.dart
+│   │   │   └── password_generator_screen.dart
+│   │   │
+│   │   ├── settings/
+│   │   │   └── settings_screen.dart
+│   │   │
+│   │   └── profile/
+│   │       └── profile_screen.dart
+│   │
+│   └── widgets/
+│       ├── custom_button.dart
+│       ├── custom_text_field.dart
+│       ├── password_strength_bar.dart
+│       └── vault_item_tile.dart
+│
+└── services/
+    ├── local_auth_service.dart
+    ├── notification_service.dart
+    ├── secure_storage_service.dart
+    └── biometric_auth.dart
+
 
 
 ---
