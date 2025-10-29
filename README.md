@@ -3,7 +3,6 @@
 > A modern and secure **Password Manager App** built with **Flutter**, following the **MVC architecture pattern**.  
 > The app lets you safely store, organize, and generate strong passwords — all wrapped in a stunning **dark-themed interface**.
 
-![Ramz Save App UI](https://github.com/Milad-Norozi/ramz_save/assets/Ui-Ux.webp)
 ---
 
 ## 🚀 Features
@@ -33,7 +32,7 @@
 
 > Clean, futuristic & dark — designed for both functionality and aesthetics.
 
-![App UI Preview](./original-66b650168def2810eeb8122945cb5100.webp)
+![App UI Preview](assets/Ui-Ux.webp)
 
 ---
 
