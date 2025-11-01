@@ -11,6 +11,7 @@ class AppColors {
   // Background
   static const darkBgPrimary = Color(0xFF141432);
   static const darkBgSeccondry = Color(0xFF1D1E42);
+  static const darkBgTertiary = Color(0xFF28264F);
   static const cardBg = Color(0xFF252541);
   static const inputBg = Color(0xFF2D2D44);
   

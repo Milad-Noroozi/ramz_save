@@ -51,51 +51,60 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(20),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.darkBgSeccondry,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          _buildIndicator(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home_outlined, Icons.home, 0),
-              _buildNavItem(Icons.lock_outline, Icons.lock, 1),
-              _buildAddButton(),
-              _buildNavItem(Icons.edit_outlined, Icons.edit, 3),
-              _buildNavItem(Icons.shield_outlined, Icons.shield, 4),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: AppColors.darkBgSeccondry,
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
             ],
           ),
-        ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = constraints.maxWidth / 5;
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  _buildIndicator(itemWidth),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildNavItem(Icons.home_outlined, Icons.home, 0),
+                      _buildNavItem(Icons.lock_outline, Icons.lock, 1),
+                      _buildAddButton(),
+                      _buildNavItem(Icons.edit_outlined, Icons.edit, 3),
+                      _buildNavItem(Icons.shield_outlined, Icons.shield, 4),
+                    ],
+                  ),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildIndicator() {
-    if (widget.currentIndex == 2) return const SizedBox.shrink();
+  Widget _buildIndicator(double itemWidth) {
+    if (widget.currentIndex == 2 || _previousIndex == 2) return const SizedBox.shrink();
 
     return AnimatedBuilder(
       animation: _slideAnimation,
       builder: (context, child) {
-        final itemWidth = (MediaQuery.of(context).size.width - 72) / 5;
-        final startPos = _getItemPosition(_previousIndex, itemWidth);
-        final endPos = _getItemPosition(widget.currentIndex, itemWidth);
+        final startPos = _previousIndex * itemWidth;
+        final endPos = widget.currentIndex * itemWidth;
         final currentPos = startPos + (endPos - startPos) * _slideAnimation.value;
 
         return Positioned(
-          left: currentPos,
+          left: currentPos + itemWidth / 2 - 24,
           top: 6,
           child: Container(
             width: 48,
@@ -110,32 +119,19 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
     );
   }
 
-  double _getItemPosition(int index, double itemWidth) {
-    if (index == 2) return itemWidth * 2;
-    if (index > 2) {
-      return itemWidth * index + 6;
-    }
-    return itemWidth * index + 6;
-  }
-
   Widget _buildNavItem(IconData icon, IconData activeIcon, int index) {
     final isSelected = widget.currentIndex == index;
-    
+
     return GestureDetector(
       onTap: () => widget.onTap(index),
       child: Container(
         padding: const EdgeInsets.all(12),
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          transitionBuilder: (child, animation) {
-            return ScaleTransition(
-              scale: animation,
-              child: FadeTransition(
-                opacity: animation,
-                child: child,
-              ),
-            );
-          },
+          duration: const Duration(milliseconds: 250),
+          transitionBuilder: (child, animation) => ScaleTransition(
+            scale: animation,
+            child: FadeTransition(opacity: animation, child: child),
+          ),
           child: Icon(
             isSelected ? activeIcon : icon,
             key: ValueKey<bool>(isSelected),
@@ -149,7 +145,7 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
 
   Widget _buildAddButton() {
     final isSelected = widget.currentIndex == 2;
-    
+
     return GestureDetector(
       onTap: () => widget.onTap(2),
       child: AnimatedScale(
@@ -159,19 +155,19 @@ class _BottomNavBarState extends State<BottomNavBar> with TickerProviderStateMix
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.green,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withOpacity(0.3),
+                color: AppColors.green.withOpacity(0.4),
                 blurRadius: 12,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
-          child: Icon(
+          child: const Icon(
             Icons.add,
-            color: Colors.black,
+            color: Colors.white,
             size: 28,
           ),
         ),
