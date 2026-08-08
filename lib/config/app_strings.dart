@@ -65,6 +65,13 @@ class AppStrings {
   static const biometricFailed = 'احراز هویت ناموفق بود';
   static const biometricEnableFirst =
       'برای فعال‌سازی، ابتدا رمز اصلی را وارد کنید';
+  static const biometricLockedOut =
+      'تلاش‌های ناموفق زیاد بود. کمی بعد دوباره امتحان کنید.';
+  static const biometricNoDeviceLock =
+      'ابتدا قفل صفحه دستگاه (رمز یا الگو) را فعال کنید';
+  static const biometricCancelled = 'احراز هویت لغو شد';
+  static const biometricEnabled = 'ورود با بیومتریک فعال شد';
+  static const biometricDisabled = 'ورود با بیومتریک غیرفعال شد';
 
   // ── Home ─────────────────────────────────────────────────────────────────
   static const safetyScore = 'امتیاز امنیت';
