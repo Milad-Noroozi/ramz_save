@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Vault backups and key material — never commit
+*.ramzsave
+*.ramzsave.json
+backups/
+*.keystore
+*.jks
+key.properties
