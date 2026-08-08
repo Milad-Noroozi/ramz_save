@@ -3,9 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<string>fa_IR</string>
 	<key>CFBundleDisplayName</key>
-	<string>Ramz Save</string>
+	<string>رمزسیو</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>fa</string>
+	</array>
+	<key>NSFaceIDUsageDescription</key>
+	<string>برای باز کردن قفل گاوصندوق رمزهای شما از Face ID استفاده می‌شود.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
