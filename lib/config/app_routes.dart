@@ -1,6 +1,6 @@
 class AppRoutes {
   AppRoutes._();
-  
+
   static const splash = '/';
   static const login = '/login';
   static const register = '/register';
@@ -11,4 +11,8 @@ class AppRoutes {
   static const settings = '/settings';
   static const profile = '/profile';
   static const vaultHealth = '/vault-health';
+  static const allVaults = '/all-vaults';
+  static const backup = '/backup';
+  static const premium = '/premium';
+  static const changeMasterPassword = '/change-master-password';
 }
