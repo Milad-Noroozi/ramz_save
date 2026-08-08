@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -64,20 +65,44 @@ class EncryptionService {
   /// Stretches [password] into a KEK. Intentionally slow — the iteration count
   /// is the only thing standing between a stolen device and an offline
   /// brute-force of the master password.
+  ///
+  /// Blocks the calling thread for a noticeable fraction of a second. Prefer
+  /// [deriveKeyAsync] anywhere a frame is being drawn.
   static DerivedKey deriveKey({
     required String password,
     Uint8List? salt,
     int rounds = iterations,
   }) {
     final effectiveSalt = salt ?? generateSalt();
-    final derivator = PBKDF2KeyDerivator(HMac(SHA256Digest(), 64))
-      ..init(Pbkdf2Parameters(effectiveSalt, rounds, keyLength));
-
-    final key = derivator.process(
-      Uint8List.fromList(utf8.encode(password)),
+    return DerivedKey(
+      key: _pbkdf2(password, effectiveSalt, rounds),
+      salt: effectiveSalt,
+      iterations: rounds,
     );
+  }
 
+  /// [deriveKey] on a background isolate, so unlocking doesn't drop frames.
+  ///
+  /// The salt is generated on this side: the isolate gets a plain closure over
+  /// sendable values, and the caller keeps a `DerivedKey` identical to the
+  /// synchronous version's.
+  static Future<DerivedKey> deriveKeyAsync({
+    required String password,
+    Uint8List? salt,
+    int rounds = iterations,
+  }) async {
+    final effectiveSalt = salt ?? generateSalt();
+    final key = await Isolate.run(
+      () => _pbkdf2(password, effectiveSalt, rounds),
+    );
     return DerivedKey(key: key, salt: effectiveSalt, iterations: rounds);
+  }
+
+  static Uint8List _pbkdf2(String password, Uint8List salt, int rounds) {
+    final derivator = PBKDF2KeyDerivator(HMac(SHA256Digest(), 64))
+      ..init(Pbkdf2Parameters(salt, rounds, keyLength));
+
+    return derivator.process(Uint8List.fromList(utf8.encode(password)));
   }
 
   /// AES-256-GCM. Returns `nonce || ciphertext || tag` as one buffer, so

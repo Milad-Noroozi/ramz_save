@@ -62,13 +62,13 @@ class BackupService {
   static const fileExtension = 'ramzsave';
 
   /// Serialises and encrypts. Pure — takes no I/O, so it is directly testable.
-  static String encode({
+  static Future<String> encode({
     required List<VaultModel> vaults,
     required String password,
     required DateTime createdAt,
     UserModel? user,
-  }) {
-    final derived = EncryptionService.deriveKey(password: password);
+  }) async {
+    final derived = await EncryptionService.deriveKeyAsync(password: password);
 
     final plaintext = jsonEncode({
       'vaults': vaults.map((v) => v.toJson()).toList(),
@@ -93,7 +93,7 @@ class BackupService {
 
   /// Inverse of [encode]. Never throws — every failure becomes a
   /// [BackupContents.failure] so the caller has one path to handle.
-  static BackupContents decode(String content, String password) {
+  static Future<BackupContents> decode(String content, String password) async {
     final Map<String, dynamic> envelope;
     try {
       final decoded = jsonDecode(content);
@@ -125,7 +125,7 @@ class BackupService {
       return const BackupContents.failure(BackupError.invalidFile);
     }
 
-    final derived = EncryptionService.deriveKey(
+    final derived = await EncryptionService.deriveKeyAsync(
       password: password,
       salt: salt,
       rounds:

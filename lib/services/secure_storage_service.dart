@@ -114,7 +114,7 @@ class SecureStorageService {
         int.tryParse(await _storage.read(key: _kIterations) ?? '') ??
         EncryptionService.iterations;
 
-    final derived = EncryptionService.deriveKey(
+    final derived = await EncryptionService.deriveKeyAsync(
       password: password,
       salt: base64Decode(saltB64),
       rounds: rounds,
@@ -139,7 +139,9 @@ class SecureStorageService {
     required Uint8List dek,
     required String newPassword,
   }) async {
-    final derived = EncryptionService.deriveKey(password: newPassword);
+    final derived = await EncryptionService.deriveKeyAsync(
+      password: newPassword,
+    );
     await saveVaultKeys(derived: derived, dek: dek);
     EncryptionService.wipe(derived.key);
   }
