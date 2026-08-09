@@ -97,6 +97,9 @@ class AppStrings {
   static const filterWeak = 'ضعیف';
   static const filterCompromised = 'لو رفته';
   static const filterReused = 'تکراری';
+  static const noResultsHint =
+      'جستجو یا فیلترها را تغییر دهید تا نتیجه‌ی دیگری ببینید.';
+  static const clearFilters = 'پاک کردن فیلترها';
 
   // ── Add / edit vault ─────────────────────────────────────────────────────
   static const addVaultTitle = 'گاوصندوق جدید';

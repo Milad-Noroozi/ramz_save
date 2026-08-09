@@ -13,6 +13,10 @@ class EmptyState extends StatelessWidget {
   final String? actionLabel;
   final VoidCallback? onAction;
 
+  /// Icon on the action button. Defaults to a plus, since most empty states
+  /// here invite the user to create something.
+  final IconData actionIcon;
+
   /// Tints the icon — green on the health screen, where "empty" is good news.
   final Color? color;
 
@@ -22,6 +26,7 @@ class EmptyState extends StatelessWidget {
     this.message,
     this.actionLabel,
     this.onAction,
+    this.actionIcon = Icons.add,
     this.color,
     super.key,
   });
@@ -65,7 +70,7 @@ class EmptyState extends StatelessWidget {
                 text: actionLabel!,
                 onPressed: onAction,
                 fullWidth: false,
-                icon: Icons.add,
+                icon: actionIcon,
               ),
             ],
           ],
