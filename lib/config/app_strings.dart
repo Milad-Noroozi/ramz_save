@@ -55,6 +55,12 @@ class AppStrings {
   static const unlockWithBiometric = 'ورود با اثر انگشت یا چهره';
   static const wrongMasterPassword = 'رمز اصلی نادرست است';
   static const welcomeBack = 'خوش آمدید';
+  static const forgotMasterPassword = 'رمز اصلی را فراموش کرده‌اید؟';
+  static const resetVaultTitle = 'پاک کردن گاوصندوق؟';
+  static const resetVaultMessage =
+      'رمز اصلی قابل بازیابی نیست، چون هیچ‌جا ذخیره نمی‌شود. تنها راه ادامه، '
+      'پاک کردن کامل گاوصندوق و شروع دوباره است. تمام رمزهای ذخیره‌شده برای '
+      'همیشه از بین می‌روند.';
 
   // ── Biometrics ───────────────────────────────────────────────────────────
   static const biometricReason = 'برای باز کردن قفل گاوصندوق احراز هویت کنید';
