@@ -8,6 +8,7 @@ class AppStrings {
   // ── App ──────────────────────────────────────────────────────────────────
   static const appName = 'رمزسیو';
   static const appTagline = 'گاوصندوق رمزهای شما';
+  static const appVersion = '1.0.0';
 
   // ── Common ───────────────────────────────────────────────────────────────
   static const save = 'ذخیره';
@@ -202,9 +203,20 @@ class AppStrings {
   static const currentMasterPassword = 'رمز اصلی فعلی';
   static const newMasterPassword = 'رمز اصلی جدید';
   static const masterPasswordChanged = 'رمز اصلی تغییر کرد';
+  static const changeMasterPasswordNote =
+      'رمزهای ذخیره‌شده دست‌نخورده می‌مانند؛ فقط کلید گاوصندوق با رمز جدید '
+      'دوباره محافظت می‌شود. پس از تغییر، برای باز کردن قفل از رمز جدید '
+      'استفاده کنید.';
   static const checkBreaches = 'بررسی آنلاین نشت رمزها';
   static const checkBreachesDesc =
       'رمزها هرگز ارسال نمی‌شوند؛ فقط بخشی از اثر انگشت آن‌ها بررسی می‌شود.';
+  static const preferences = 'ترجیحات';
+  static const dataAndBackup = 'داده‌ها';
+  static const aboutDescription =
+      'رمزسیو یک گاوصندوق رمز آفلاین است. تمام اطلاعات شما رمزنگاری‌شده روی '
+      'همین دستگاه می‌ماند و به هیچ سروری فرستاده نمی‌شود.';
+  static const lockVaultNow = 'همین حالا قفل کن';
+  static const premiumActive = 'نسخه ویژه فعال است';
 
   // ── Profile ──────────────────────────────────────────────────────────────
   static const name = 'نام';
@@ -225,6 +237,9 @@ class AppStrings {
       'فایل پشتیبان با رمز جداگانه‌ای که انتخاب می‌کنید رمزنگاری می‌شود. '
       'بدون آن رمز، فایل قابل بازیابی نیست.';
   static const importedCount = 'مورد بازیابی شد';
+  static const pickBackupFile = 'انتخاب فایل و بازیابی';
+  static const importMergeNote =
+      'موارد بازیابی‌شده با گاوصندوق فعلی ادغام می‌شوند؛ چیزی حذف نمی‌شود.';
 
   // ── Premium ──────────────────────────────────────────────────────────────
   static const premiumTitle = 'ارتقا به نسخه ویژه';
@@ -237,6 +252,9 @@ class AppStrings {
       'بررسی مداوم حساب‌ها در برابر نشت اطلاعات';
   static const premiumPerk3 = 'حذف کامل تبلیغات از برنامه';
   static const goPremium = 'فعال‌سازی نسخه ویژه';
+  static const toman = 'تومان';
+  static const perYear = '/ سال';
+  static const perWeek = '/ هفته';
   static const premiumDemoNote =
       'این صفحه نمایشی است و به درگاه پرداخت واقعی متصل نیست.';
 
@@ -244,6 +262,8 @@ class AppStrings {
   static const fieldRequired = 'این فیلد الزامی است';
   static const passwordTooShort = 'رمز اصلی باید حداقل ۸ نویسه باشد';
   static const passwordsDoNotMatch = 'رمزها با هم مطابقت ندارند';
+  static const sameAsCurrentPassword =
+      'رمز جدید باید با رمز فعلی متفاوت باشد';
   static const invalidEmail = 'ایمیل معتبر نیست';
   static const invalidUrl = 'آدرس معتبر نیست';
   static const invalidCardNumber = 'شماره کارت معتبر نیست';
