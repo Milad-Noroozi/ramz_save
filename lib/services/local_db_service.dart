@@ -146,6 +146,16 @@ class LocalDbService {
   Future<void> saveGeneratorOptions(PasswordOptions options) =>
       _requirePrefs.put(_kGeneratorOptions, options.toJson());
 
+  /// True while both encrypted boxes exist on disk.
+  ///
+  /// This is the check that keeps [AuthController.bootstrap] honest: the
+  /// keychain can outlive the database (an iOS uninstall leaves the keychain
+  /// behind), so "the key exists" and "the vault exists" are different
+  /// questions and a boot with a fresh Hive but an old keychain must land on
+  /// setup, not on a lock screen for a vault that is not there.
+  Future<bool> get vaultExistsOnDisk async =>
+      await Hive.boxExists(_vaultBox) && await Hive.boxExists(_prefsBox);
+
   /// Deletes the boxes from disk. Paired with wiping the key material — on its
   /// own it would leave an unreadable but present database.
   Future<void> destroy() async {

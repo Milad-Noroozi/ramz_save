@@ -125,7 +125,6 @@ class TagChip extends StatelessWidget {
       color: selected
           ? color.withValues(alpha: 0.14)
           : AppColors.inputBg,
-      borderRadius: BorderRadius.circular(12),
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),

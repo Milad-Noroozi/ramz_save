@@ -110,7 +110,7 @@ class _AllVaultViewState extends State<AllVaultView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TagSelector(
-                selected: [?vaults.tag],
+                selected: vaults.tag == null ? const [] : [vaults.tag!],
                 showLabel: false,
                 // Single-select here: the chips are a quick narrowing device,
                 // and the controller holds one tag. Whatever the selector hands

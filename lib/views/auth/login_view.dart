@@ -126,7 +126,11 @@ class _LoginViewState extends State<LoginView> {
 
             CustomTextField.password(
               controller: _password,
-              hint: AppStrings.masterPasswordHint,
+              // The unlock screen asks for the password that already exists;
+              // the field's default label and the setup screen's "choose a
+              // strong one" hint both read as if a new one were being made.
+              label: AppStrings.masterPassword,
+              hint: AppStrings.enterMasterPasswordHint,
               focusNode: _focus,
               autofocus: true,
               textInputAction: TextInputAction.done,

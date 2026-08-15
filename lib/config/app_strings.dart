@@ -52,6 +52,7 @@ class AppStrings {
   // ── Login (unlock) ───────────────────────────────────────────────────────
   static const loginTitle = 'باز کردن قفل';
   static const loginSubtitle = 'برای دسترسی به گاوصندوق، رمز اصلی را وارد کنید';
+  static const enterMasterPasswordHint = 'رمز اصلی را وارد کنید';
   static const unlock = 'باز کردن قفل';
   static const unlockWithBiometric = 'ورود با اثر انگشت یا چهره';
   static const wrongMasterPassword = 'رمز اصلی نادرست است';

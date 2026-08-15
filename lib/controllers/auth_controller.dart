@@ -90,7 +90,12 @@ class AuthController extends ChangeNotifier with WidgetsBindingObserver {
 
     _biometricAvailability = await _biometrics.availability();
     _biometricEnabled = await _secureStorage.hasBiometricDek();
-    _status = await _secureStorage.hasVault()
+    // A wrapped key in the keychain is not the same as a vault on disk: iOS
+    // keeps the keychain when the app is deleted, so a reinstall can leave
+    // key material pointing at a database that is gone. Both must exist
+    // before the app presents a lock screen.
+    final vaultExists = await _db.vaultExistsOnDisk;
+    _status = await _secureStorage.hasVault() && vaultExists
         ? AuthStatus.locked
         : AuthStatus.needsSetup;
 
